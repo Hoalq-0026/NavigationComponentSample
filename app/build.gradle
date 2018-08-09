@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+//    buildToolsVersion build_versions.build_tools
+    defaultConfig {
+        applicationId "com.example.lequanghoa.navigationcomponentsample"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-v4:27.1.1'
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.stdlib
+    implementation deps.support.app_compat
+    implementation deps.support.design
+    implementation deps.support.v4
+    implementation deps.contraint_layout
+
+    // implementation 'androidx.core:core-ktx:0.3'
+
+    // navigation
+    implementation deps.navigation.ui
+    implementation deps.navigation.fragment
+
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+//    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+//    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
+//    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+}
